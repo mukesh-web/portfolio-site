@@ -1,0 +1,103 @@
+<!doctype html>
+{% extends 'portfolio/base.html' %}
+{% load static %}
+<html lang="en">
+
+<body>
+{% block content %}
+<nav class="navbar navbar-light " style="background-color: #6090f7;">
+    <a class="navbar-brand logo_h justify-content-start" href="{% url 'home' %}"><h1>Portfolio</h1></a>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" style="color:#0c3999;" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  style="color:#0c3999;" href="{% url 'create' %}">Create</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  style="color:#0c3999;" href="{% url 'about' %}">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  style="color:#0c3999;" href="{% url 'contact' %}">Contact</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="banner_area"style="padding-top:40px">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{% static 'images/nature2.jpg' %}"  alt="not shows">
+        </div>
+        <div class="col-md">
+            <img src="{% static 'images/nature.jpg' %}"  alt="not shows">
+        </div>
+        <div class="col-md-3">
+            <h1>NATURE:</h1>
+            <p>
+                Nature, in the broadest sense, is the natural, physical, or material world or universe.
+                "Nature" can refer to the phenomena of the physical world, and also to life in general.
+            </p>
+            <p>In the sunset in Miami, nature gives a breathtaking display of beauty every evening painting the sky with glorious colors.
+                Standing on the edge of the Grand Canyon on sees a breathtaking view of nature’s handicraft as it gouges out a canyon so big it is breathtaking.
+            </p>
+        </div>
+    </div>
+</div>
+
+<section class="work" style="margin-top:-100px;padding-bottom:40px;">
+    <div class="main_title">
+        <h2>Our Latest Portfolio Page</h2>
+        <p>Who are in extremely love with eco friendly system.</p>
+    </div>
+
+    <div class="container" style="margin-right:-80px">
+        <div class="row" style="margin-left:-100px;">
+            {% for blog in blogs %}
+            <div class="col-md-4  brand manipul design print" style="margin-right:40px;">
+                <div class="h_gallery_item">
+                    <div class="g_item_text">
+                        <a class="nav-link" href="{{blog.get_absolute_url}}"><h4>{{blog.name}}</h4></a>
+                        <h5>{{blog.title}}</h5>
+                    </div>
+                    <div class="g_img_item">
+
+                     <img  src="{{blog.image.url}}" alt="" style="width:400px;height:300px">
+                       <a class="light" href="{{blog.image.url}}">
+          <img src="{% static 'images/zoom.png' %}" alt=""></a>
+
+                    </div>
+
+                    <div class="g_item_text">
+                        <a class="nav-link" href="{% url 'folio' blog.id %}"><h4>{{blog.location}}</h4></a>
+                        <p>{{blog.desc}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<footer class="footer_area p_100">
+    <div class="container">
+        <div class="row">
+            {% for blog in blogs %}
+            <div class="col-lg-2 col-md-12 mb-4" style="margin-right:30px;margin-bottom:30px">
+                <div class="view overlay z-depth-1-half">
+                    <img src="{{blog.image.url}}"  alt="" style="width:200px;height:150px">
+                </div>
+                {{blog.location}}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="{% url 'home' %}"> Portfolio.com</a>
+    </div>
+</footer>
+
+{% endblock %}
+
+</body>
+</html>

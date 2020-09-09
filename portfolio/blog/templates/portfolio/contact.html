@@ -1,0 +1,116 @@
+<!doctype html>
+{% extends 'portfolio/base.html' %}
+{% load static %}
+<html lang="en">
+
+<body>
+{% block content %}
+<nav class="navbar navbar-light " style="background-color: #6090f7;">
+    <a class="navbar-brand logo_h justify-content-start" href="{% url 'home' %}"><h1>Portfolio</h1></a>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" style="color:#0c3999;" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  style="color:#0c3999;" href="{% url 'list' %}">List</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid" style="padding-top:50px;padding-bottom:50px;background-color:#adab65;">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="{% static 'images/image3.jpg' %}"  alt="not shows">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'images/sea.jpg' %}"  alt="not shows">
+        </div>
+        <div class="col-md-3">
+            <h1>NATURE:</h1>
+            <p>
+                Nature, in the broadest sense, is the natural, physical, or material world or universe.
+                "Nature" can refer to the phenomena of the physical world, and also to life in general.
+            </p>
+            <p>In the sunset in Miami, nature gives a breathtaking display of beauty every evening painting the sky with glorious colors.
+                Standing on the edge of the Grand Canyon on sees a breathtaking view of nature’s handicraft as it gouges out a canyon so big it is breathtaking.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid" style="background-color:#a277b5;">
+    <div class="container" style="padding:50px 50px 80px 50px;background-color:#f0c246;">
+        {% if messages %}
+        <div class="form-group text-center alert alert-danger">
+            {% for message in messages %}
+            <h3>{{message}}</h3>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="contact_info">
+                    <div class="info_item">
+                        <i class="fa fa-user"></i>
+                        <h6>name</h6>
+                        <p>example.name!</p>
+                    </div>
+                    <div class="info_item">
+                        <i class="fa fa-envelope"></i>
+                        <h6>support@name.com</h6>
+                        <p>Send us your query anytime!</p>
+                    </div>
+
+                    <div class="info_item">
+                        <i class="fa fa-home"></i>
+                        <h6>India</h6>
+                        <p>mumbai city</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <form class="row contact_form"  method="post" enctype="multipart/form-data"  id="contactForm">
+                    {% csrf_token %}
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control"  name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control"  name="email" placeholder="Enter email address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control"  name="title" placeholder="Enter Title">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control"  name="location" placeholder="Enter Location" required>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <textarea class="form-control" name="desc"  rows="1" placeholder="Enter Description"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-right">
+                        <button type="submit" value="submit" class="btn submit_btn" >Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="page-footer font-small blue"style="background-color:#0d0b06;padding:60px ">
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="{% url 'home' %}"> Portfolio</a>
+    </div>
+</footer>
+
+{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+{% extends 'portfolio/base.html' %}
+{% load static %}
+<html lang="en">
+
+
+<body style="background-color:#dfe5e8;">
+{% block content %}
+
+<nav class="navbar navbar-light " style="background-color: #3d9e29;">
+    <a class="navbar-brand logo_h justify-content-start" href="{% url 'home' %}"><h1>Portfolio</h1></a>
+    <ul class="nav justify-content-end" >
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'home' %}">Home</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container" style=" margin-top:40px;">
+    <div class="row">
+    {% for blog in blogs %}
+        <div class="card alert alert-dark" style="width: 35rem;margin-left:25px;margin-bottom:25px;background-color:#821546">
+            <div class="card-header alert alert-success" role="alert">
+                Title : {{blog.title}}
+            </div>
+
+            <ul class="list-group list-group-flush ">
+                <li class="alert alert-danger list-group-item" >Name : {{blog.name}}</li>
+                <li class=" alert alert-warning list-group-item" >Email : {{blog.email}}</li>
+                <li class=" alert alert-info list-group-item" >Location : {{blog.location}}</li>
+                <li class=" alert alert-info list-group-item" >Description : {{blog.desc}}</li>
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<footer class="page-footer font-small blue"style="background-color:#0d0b06;padding:60px ">
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="{% url 'home' %}"> Portfolio</a>
+    </div>
+</footer>
+
+{% endblock %}
+</body>
+</html>
